@@ -16,6 +16,8 @@ const init = async () => {
     '0x8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63'
   );
 
+  console.log(add.address);
+
   await contract.methods.setValeur(10).send({
     from: add.address,
     gas: 4600000,
@@ -23,6 +25,13 @@ const init = async () => {
 
   const data = await contract.methods.getValeur().call();
   console.log(data);
+
+  const balance = web3.utils.fromWei(
+    await web3.eth.getBalance(add.address),
+    'ether'
+  );
+
+  console.log(balance);
 };
 
 init();
